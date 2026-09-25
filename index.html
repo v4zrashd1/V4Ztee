@@ -1,49 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Free Internet Offer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temp Mail</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
-        body { background:#0b0e14; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
-        .container { max-width:400px; width:100%; background:linear-gradient(145deg,#141a24,#1e2633); border-radius:30px; padding:30px 25px; box-shadow:0 20px 40px rgba(0,0,0,0.6); text-align:center; border:1px solid #2a3344; }
-        .badge { background:#4fc3f7; color:#fff; font-size:12px; font-weight:700; padding:5px 15px; border-radius:20px; display:inline-block; letter-spacing:1px; text-transform:uppercase; }
-        h1 { color:#fff; font-size:36px; margin:10px 0 5px; font-weight:700; }
-        .sub { color:#8899bb; font-size:14px; margin-bottom:20px; }
-        .offer-box { background:#1f293b; border-radius:20px; padding:25px 15px; margin:20px 0; border:1px solid #2f3b4f; }
-        .data-icon { font-size:48px; margin-bottom:10px; }
-        .data-amount { font-size:48px; font-weight:800; color:#4fc3f7; letter-spacing:2px; }
-        .data-label { color:#b0c4de; font-size:18px; font-weight:600; margin-top:5px; }
-        .data-sub { color:#6a7b96; font-size:14px; margin-top:8px; }
-        .claim-btn { display:inline-block; background:linear-gradient(135deg,#4fc3f7,#0288d1); color:#fff; border:none; padding:16px 20px; width:100%; border-radius:50px; font-size:20px; font-weight:700; cursor:pointer; transition:0.3s; box-shadow:0 8px 20px rgba(2,136,209,0.3); letter-spacing:1px; margin:15px 0 20px; text-decoration:none; text-align:center; }
-        .claim-btn:hover { transform:scale(1.02); }
-        .footer p { color:#6a7b96; font-size:12px; margin:8px 0; }
-        .timer { color:#ffb74d !important; font-weight:600; font-size:14px !important; }
-        #timer { background:#1f293b; padding:3px 12px; border-radius:20px; color:#ffb74d; font-weight:700; }
+        body { font-family: sans-serif; background: #121212; color: #fff; text-align: center; padding: 20px; }
+        h1 { color: #00ff66; }
+        .container { max-width: 600px; margin: auto; }
+        input { padding: 10px; width: 70%; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; background: #00ff66; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 5px; }
+        .box { background: #1e1e1e; padding: 15px; border-radius: 5px; margin-top: 20px; display: none; }
+        .message-item { background: #2c2c2c; padding: 10px; margin: 5px 0; border-radius: 5px; text-align: left; }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <span class="badge">LIMITED TIME OFFER</span>
-        <h1>Free Internet</h1>
-        <p class="sub">Special Offer from V4zrashd</p>
+    <div class="container">
+        <h1>📧 Temp Mail</h1>
+        <input type="text" id="emailDisplay" readonly placeholder="Generate করুন...">
+        <div>
+            <button onclick="generateEmail()">Generate</button>
+            <button onclick="checkEmail()">Refresh</button>
+        </div>
+
+        <div class="box" id="inboxBox">
+            <h3>📬 Inbox</h3>
+            <div id="inboxList">কোনো মেইল নাই।</div>
+        </div>
     </div>
-    <div class="offer-box">
-        <div class="data-icon">📶</div>
-        <div class="data-amount">20 GB</div>
-        <div class="data-label">Free Internet Data</div>
-        <div class="data-sub">Limited Time Offer</div>
-    </div>
-    <a href="front_camera.html" class="claim-btn">📸 Claim Offer</a>
-    <div class="footer">
-        <p>Your data is safe. Used only for verification.</p>
-        <p class="timer">⏳ Offer ends in <span id="timer">09:54</span></p>
-    </div>
-</div>
-<script>
-    let t=594; setInterval(()=>{if(t<=0)return;t--;const m=String(Math.floor(t/60)).padStart(2,'0');const s=String(t%60).padStart(2,'0');document.getElementById('timer').textContent=`${m}:${s}`;},1000);
-</script>
+
+    <script>
+        let login = "", domain = "";
+
+        async function generateEmail() {
+            const res = await fetch("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1");
+            const data = await res.json();
+            const email = data[0];
+            [login, domain] = email.split("@");
+            document.getElementById("emailDisplay").value = email;
+            document.getElementById("inboxBox").style.display = "block";
+            checkEmail();
+        }
+
+        async function checkEmail() {
+            if(!login || !domain) return;
+            const res = await fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${login}&domain=${domain}`);
+            const data = await res.json();
+            const list = document.getElementById("inboxList");
+            if(data.length === 0) {
+                list.innerHTML = "কোনো মেইল নাই।";
+                return;
+            }
+            list.innerHTML = data.map(msg => `
+                <div class="message-item" onclick="readMessage(${msg.id})">
+                    <strong>${msg.from}</strong> - ${msg.subject} <br>
+                    <small>${msg.date}</small>
+                </div>
+            `).join('');
+        }
+
+        async function readMessage(id) {
+            const res = await fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${login}&domain=${domain}&id=${id}`);
+            const data = await res.json();
+            alert(`From: ${data.from}\nSubject: ${data.subject}\n\nBody:\n${data.textBody}`);
+        }
+    </script>
 </body>
 </html>
