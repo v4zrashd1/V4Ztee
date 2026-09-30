@@ -1,69 +1,220 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temp Mail</title>
-    <style>
-        body { font-family: sans-serif; background: #121212; color: #fff; text-align: center; padding: 20px; }
-        h1 { color: #00ff66; }
-        .container { max-width: 600px; margin: auto; }
-        input { padding: 10px; width: 70%; border-radius: 5px; border: none; }
-        button { padding: 10px 20px; background: #00ff66; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 5px; }
-        .box { background: #1e1e1e; padding: 15px; border-radius: 5px; margin-top: 20px; display: none; }
-        .message-item { background: #2c2c2c; padding: 10px; margin: 5px 0; border-radius: 5px; text-align: left; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Happy Birthday SHADOW 🎉🎂</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:#fff;text-align:center;
+ background:linear-gradient(160deg,#12003a,#2b0060 35%,#4a0080 60%,#10002e 100%);
+ position:relative;user-select:none;overflow-x:hidden}
+.bg{position:fixed;inset:-30%;z-index:0;filter:blur(70px);opacity:.85;background:
+ radial-gradient(circle at 20% 25%,#ff2d95,transparent 45%),
+ radial-gradient(circle at 80% 20%,#00d4ff,transparent 45%),
+ radial-gradient(circle at 50% 80%,#ffd000,transparent 45%),
+ radial-gradient(circle at 15% 85%,#7b2bff,transparent 45%),
+ radial-gradient(circle at 85% 75%,#00ffa3,transparent 45%);
+ animation:morph 18s ease-in-out infinite alternate}
+@keyframes morph{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.25)}100%{transform:rotate(360deg) scale(1.1)}}
+.aurora{position:fixed;border-radius:50%;filter:blur(90px);opacity:.45;z-index:1;pointer-events:none;animation:drift 12s ease-in-out infinite alternate}
+.a1{width:55vmax;height:55vmax;left:-12vmax;top:-12vmax;background:radial-gradient(circle,#ff2d95,transparent 70%)}
+.a2{width:50vmax;height:50vmax;right:-12vmax;top:15%;background:radial-gradient(circle,#00e5ff,transparent 70%);animation-delay:-4s}
+.a3{width:48vmax;height:48vmax;left:25%;bottom:-22vmax;background:radial-gradient(circle,#ffd000,transparent 70%);animation-delay:-8s}
+@keyframes drift{to{transform:translate(5vmax,5vmax) scale(1.2)}}
+.star{position:fixed;border-radius:50%;background:#fff;z-index:2;pointer-events:none;animation:tw 2.6s infinite ease-in-out}
+@keyframes tw{0%,100%{opacity:.12;transform:scale(.6)}50%{opacity:1;transform:scale(1.3)}}
+.dot{position:fixed;border-radius:50%;z-index:2;pointer-events:none;opacity:.55;background:radial-gradient(circle,#fff,transparent 70%);animation:rise linear infinite}
+@keyframes rise{from{transform:translateY(105vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+canvas#confetti{position:fixed;inset:0;z-index:20;pointer-events:none}
+</style>
+<style>
+#gate{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ background:radial-gradient(ellipse at 50% 45%,#2a0066 0%,#07030f 75%);transition:opacity .9s,visibility .9s}
+#gate.gone{opacity:0;visibility:hidden;pointer-events:none}
+#gate .t1{font-size:clamp(1rem,4.5vw,1.6rem);letter-spacing:.28em;color:#fff;text-shadow:0 0 18px #ff2d95;animation:fadeDown 1.1s ease both}
+#gate .t2{margin-top:14px;font-size:clamp(.8rem,3.5vw,1rem);letter-spacing:.3em;color:#9ff0ff;animation:fadeDown 1.1s .3s ease both}
+#cakeBtn{font-size:clamp(5rem,24vw,9rem);margin:26px 0;cursor:pointer;animation:bob 1.6s ease-in-out infinite;filter:drop-shadow(0 0 34px rgba(255,150,0,.8))}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-22px) rotate(7deg)}}
+#gate .tap{font-size:1rem;letter-spacing:.4em;color:#ffd166;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:none}}
+.wrap{position:relative;z-index:10;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px 100px}
+.hb{font-size:clamp(1rem,4.4vw,1.9rem);letter-spacing:.45em;text-indent:.45em;font-weight:700;
+ background:linear-gradient(90deg,#fff,#ffd000,#ff2d95,#00d4ff,#fff);background-size:300% 100%;
+ -webkit-background-clip:text;background-clip:text;color:transparent;opacity:0}
+@keyframes slide{to{background-position:300% 0}}
+body.open .hb{animation:slide 4s linear infinite,fadeDown 1s .2s ease both}
+.bn{margin-top:10px;font-size:clamp(1rem,4vw,1.5rem);letter-spacing:.06em;color:#ffe9a8;text-shadow:0 0 16px #ff9500;opacity:0}
+body.open .bn{animation:fadeDown 1s .45s ease both}
+.name{display:flex;justify-content:center;flex-wrap:wrap;margin:16px 0 6px;perspective:700px}
+.name span{font-weight:900;line-height:1;font-size:clamp(2.4rem,14vw,7.5rem);font-family:Impact,'Arial Black',sans-serif;
+ background:linear-gradient(180deg,#fff 0%,#ffe600 26%,#ff8a00 50%,#c2185b 52%,#ff2d95 74%,#ffd6f0 100%);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ filter:drop-shadow(0 3px 0 #6a0033) drop-shadow(0 7px 0 #40001f) drop-shadow(0 14px 26px rgba(0,0,0,.65)) drop-shadow(0 0 34px rgba(255,45,149,.7));
+ opacity:0;transform:translateY(80px) rotateX(80deg);display:inline-block}
+body.open .name span{animation:letterIn 1s cubic-bezier(.2,1.6,.35,1) forwards,bounce 3.2s ease-in-out infinite}
+@keyframes letterIn{to{opacity:1;transform:translateY(0) rotateX(0)}}
+@keyframes bounce{0%,100%{margin-top:0}50%{margin-top:-16px}}
+.shine{position:relative}
+.shine::after{content:attr(data-c);position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.95) 50%,transparent 60%);
+ background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 3s ease-in-out infinite;pointer-events:none}
+@keyframes sweep{0%{background-position:130% 0}60%,100%{background-position:-130% 0}}
+</style>
+<style>
+.card{margin-top:22px;max-width:640px;padding:20px 26px;border-radius:24px;opacity:0;
+ background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+ border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+ box-shadow:0 12px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.3)}
+.card p{font-size:clamp(.92rem,3.7vw,1.15rem);line-height:1.85;color:#fff}
+.card .sig{margin-top:12px;font-size:.85rem;letter-spacing:.3em;color:#ffd166}
+body.open .card{animation:fadeUp 1.2s 1.2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px;opacity:0}
+body.open .pills{animation:fadeUp 1.2s 1.6s ease both}
+.pill{padding:8px 16px;border-radius:999px;font-size:.85rem;letter-spacing:.1em;background:rgba(255,255,255,.12);
+ border:1px solid rgba(255,255,255,.3);animation:floaty 4s ease-in-out infinite}
+.pill:nth-child(2){animation-delay:-1s}.pill:nth-child(3){animation-delay:-2s}.pill:nth-child(4){animation-delay:-3s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.balloon{position:fixed;bottom:-160px;z-index:5;font-size:56px;pointer-events:none;animation:goUp linear infinite;opacity:.9;filter:drop-shadow(0 6px 12px rgba(0,0,0,.4))}
+@keyframes goUp{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-135vh) rotate(12deg)}}
+.tools{position:fixed;left:0;right:0;bottom:14px;z-index:40;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:11px 22px;border:none;border-radius:999px;cursor:pointer;font-size:.9rem;letter-spacing:.1em;color:#2b0033;font-weight:700;
+ background:linear-gradient(135deg,#ffd000,#ff2d95);box-shadow:0 8px 22px rgba(255,45,149,.45);transition:transform .2s}
+.btn.ghost{background:linear-gradient(135deg,#00e5ff,#7b2bff);color:#fff;box-shadow:0 8px 22px rgba(0,229,255,.35)}
+.btn:active{transform:scale(.93)}
+@media(max-width:420px){.btn{padding:10px 15px;font-size:.78rem}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>📧 Temp Mail</h1>
-        <input type="text" id="emailDisplay" readonly placeholder="Generate করুন...">
-        <div>
-            <button onclick="generateEmail()">Generate</button>
-            <button onclick="checkEmail()">Refresh</button>
-        </div>
+<div class="bg"></div>
+<div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+<canvas id="confetti"></canvas>
 
-        <div class="box" id="inboxBox">
-            <h3>📬 Inbox</h3>
-            <div id="inboxList">কোনো মেইল নাই।</div>
-        </div>
-    </div>
+<div id="gate">
+  <div class="t1">আজকের দিনটা শুধু তোমার</div>
+  <div class="t2">HAPPY BIRTHDAY</div>
+  <div id="cakeBtn">🎂</div>
+  <div class="tap">— কেকটায় ট্যাপ করো —</div>
+</div>
 
-    <script>
-        let login = "", domain = "";
+<div class="wrap">
+  <div class="hb">HAPPY BIRTHDAY</div>
+  <div class="bn">জন্মদিনের অনেক অনেক শুভেচ্ছা 💖</div>
+  <div class="name" id="name"></div>
+  <div class="card">
+    <p>আজ এমন একটা দিন, যেদিন সবকিছুর রঙ একটু বেশি উজ্জ্বল।<br>
+       তুমি এমন একজন মানুষ — হাসি তোমার মতো ঝলমলে, মনটা তোমার মতোই বড়।<br>
+       রাগ, খুঁতলা, দুষ্টুমি — সবকিছুই তোমার উপর! 💫<br>
+       আল্লাহ তোমার সব ইচ্ছা পূরণ করুক, আর জীবনের প্রতিটা মুহূর্ত তোমার জন্য<br>
+       হোক রঙিন, আনন্দময় আর সুন্দর। 🌈✨</p>
+    <div class="sig">— তোমার বন্ধুর পক্ষ থেকে 💛</div>
+  </div>
+  <div class="pills">
+    <div class="pill">অনেক দোস্তি 💪</div>
+    <div class="pill">ভালোবাসা 💝</div>
+    <div class="pill">সুপার স্টার ⭐</div>
+    <div class="pill">খুব ভালো থেকো 🌟</div>
+  </div>
+</div>
 
-        async function generateEmail() {
-            const res = await fetch("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1");
-            const data = await res.json();
-            const email = data[0];
-            [login, domain] = email.split("@");
-            document.getElementById("emailDisplay").value = email;
-            document.getElementById("inboxBox").style.display = "block";
-            checkEmail();
-        }
+<div id="balloons"></div>
 
-        async function checkEmail() {
-            if(!login || !domain) return;
-            const res = await fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${login}&domain=${domain}`);
-            const data = await res.json();
-            const list = document.getElementById("inboxList");
-            if(data.length === 0) {
-                list.innerHTML = "কোনো মেইল নাই।";
-                return;
-            }
-            list.innerHTML = data.map(msg => `
-                <div class="message-item" onclick="readMessage(${msg.id})">
-                    <strong>${msg.from}</strong> - ${msg.subject} <br>
-                    <small>${msg.date}</small>
-                </div>
-            `).join('');
-        }
+<div class="tools">
+  <button class="btn" id="fireBtn">🎆 Fireworks</button>
+  <button class="btn ghost" id="confBtn">🎉 Confetti</button>
+  <button class="btn ghost" id="musicBtn">🎵 Music: OFF</button>
+</div>
 
-        async function readMessage(id) {
-            const res = await fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${login}&domain=${domain}&id=${id}`);
-            const data = await res.json();
-            alert(`From: ${data.from}\nSubject: ${data.subject}\n\nBody:\n${data.textBody}`);
-        }
-    </script>
+<audio id="music" loop preload="none">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+</audio>
+<script>
+const NAME="SANJIDA", nameEl=document.getElementById('name');
+[...NAME].forEach(function(ch,i){
+  var s=document.createElement('span');
+  s.textContent=ch;
+  s.style.animationDelay=(i*0.12)+'s,'+(2+i*0.15)+'s';
+  if(ch==='A'||ch==='O'){var w=document.createElement('span');w.className='shine';w.setAttribute('data-c',ch);w.appendChild(s);nameEl.appendChild(w);}
+  else nameEl.appendChild(s);
+});
+for(var i=0;i<70;i++){
+  var st=document.createElement('div');st.className='star';
+  var s=Math.random()*3+1;st.style.cssText='width:'+s+'px;height:'+s+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;animation-delay:'+Math.random()*3+'s';
+  document.body.appendChild(st);
+}
+for(var i=0;i<26;i++){
+  var d=document.createElement('div');d.className='dot';
+  var s=Math.random()*10+4;d.style.cssText='width:'+s+'px;height:'+s+'px;left:'+Math.random()*100+'%;animation-duration:'+(Math.random()*10+8)+'s;animation-delay:'+(-Math.random()*15)+'s';
+  document.body.appendChild(d);
+}
+var emoji=['🎈','🎉','💖','🎁','⭐','🎂','🌟','💫'];
+var bWrap=document.getElementById('balloons');
+for(var i=0;i<12;i++){
+  var b=document.createElement('div');b.className='balloon';b.textContent=emoji[i%emoji.length];
+  b.style.left=(Math.random()*92)+'vw';
+  b.style.fontSize=(38+Math.random()*34)+'px';
+  b.style.animationDuration=(13+Math.random()*12)+'s';
+  b.style.animationDelay=(-Math.random()*22)+'s';
+  bWrap.appendChild(b);
+}
+var cv=document.getElementById('confetti'),cx=cv.getContext('2d');
+var W=0,H=0,parts=[],raf=null;
+function size(){W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';}
+size();addEventListener('resize',size);
+var COLORS=['#ff2d95','#ffd000','#00e5ff','#7b2bff','#00ffa3','#ff6b35','#ffffff','#ff4d6d'];
+function add(n,power,spread){
+  for(var i=0;i<n;i++){
+    parts.push({x:W/2+(Math.random()-.5)*(spread||W*.6),y:H*.35+(Math.random()-.5)*H*.15,
+      vx:(Math.random()-.5)*(power||9)*devicePixelRatio,vy:(Math.random()*(-1)-.6)*(power||9)*devicePixelRatio,
+      s:(6+Math.random()*7)*devicePixelRatio,r:Math.random()*Math.PI,vr:(Math.random()-.5)*.35,
+      c:COLORS[(Math.random()*COLORS.length)|0],sq:Math.random()>.45,life:0});
+  }
+  if(!raf) raf=requestAnimationFrame(loop);
+}
+function loop(){
+  cx.clearRect(0,0,W,H);
+  for(var i=parts.length-1;i>=0;i--){
+    var p=parts[i];
+    p.vy+=0.28*devicePixelRatio;p.vx*=0.995;p.vy*=0.995;
+    p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life++;
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);
+    cx.fillStyle=p.c;cx.globalAlpha=Math.max(0,1-p.life/300);
+    if(p.sq)cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.65);
+    else{cx.beginPath();cx.arc(0,0,p.s/2,0,7);cx.fill();}
+    cx.restore();
+    if(p.y>H+60||p.life>320) parts.splice(i,1);
+  }
+  if(parts.length) raf=requestAnimationFrame(loop);
+  else{raf=null;cx.clearRect(0,0,W,H);}
+}
+function boom(x,y){
+  for(var i=0;i<70;i++){
+    var a=Math.random()*Math.PI*2,sp=Math.random()*.32+.04;
+    parts.push({x:x*devicePixelRatio,y:y*devicePixelRatio,vx:Math.cos(a)*sp*22*devicePixelRatio,vy:Math.sin(a)*sp*22*devicePixelRatio,
+      s:(5+Math.random()*5)*devicePixelRatio,r:0,vr:(Math.random()-.5)*.3,c:COLORS[(Math.random()*COLORS.length)|0],sq:false,life:0});
+  }
+  if(!raf) raf=requestAnimationFrame(loop);
+}
+function fw(){ boom(Math.random()*innerWidth, Math.random()*innerHeight*.55); }
+document.getElementById('cakeBtn').addEventListener('click',function(){
+  document.body.classList.add('open');
+  document.getElementById('gate').classList.add('gone');
+  add(160,14);
+  var n=0;var t=setInterval(function(){ if(n<5){fw();n++;} else clearInterval(t); },420);
+  setInterval(fw,4200);
+});
+document.getElementById('fireBtn').addEventListener('click',function(){for(var i=0;i<5;i++) setTimeout(fw,i*180);});
+document.getElementById('confBtn').addEventListener('click',function(){add(200,4,W*1.4);});
+var m=document.getElementById('music'),mb=document.getElementById('musicBtn');
+var on=false;
+mb.addEventListener('click',function(){
+  on=!on;mb.textContent=on?'🎵 Music: ON':'🎵 Music: OFF';
+  if(on){m.volume=.5;m.play().catch(function(){mb.textContent='🎵 No net';});}
+  else m.pause();
+});
+addEventListener('click',function(e){ if(e.target.closest('button')||e.target.id==='cakeBtn')return; add(45,7); });
+</script>
 </body>
 </html>
